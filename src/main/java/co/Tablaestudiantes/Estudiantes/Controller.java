@@ -62,6 +62,39 @@ public class Controller {
         return "Estudiante eliminado";
     }
 
+    private Estudiante checkStudentParams(Estudiante estudiante, Estudiante estudian){
+        //(String.valueOf(estudiante.getSemestre()).length() >= 1) && (String.valueOf(estudiante.getFacultad()).length() >= 1) && (String.valueOf(estudiante.getNombre()).length() >= 3)) {
+
+        if(estudian.getFacultad() != null){
+            estudiante.setFacultad(estudian.getFacultad());
+        }
+        if(estudian.getSemestre() != 0 && estudian.getSemestre() <10){
+            estudiante.setSemestre(estudian.getSemestre());
+        }
+        if(String.valueOf(estudian.getNombre()).length() >= 3){
+            estudiante.setNombre(estudian.getNombre());
+        }
+        if(estudian.getId() != 0){
+            estudiante.setId(estudian.getId());
+        }
+        return estudiante;
+    }
+
+    @PutMapping(path = "/estudiantes/actualizar/{id}")
+    public String actualizarEstudiante(@PathVariable Integer id,@RequestBody Estudiante estudian){
+        Estudiante newEstu = null;
+        for (Estudiante estudiante : estudianteList){
+            if (estudiante.getId() == id){
+                newEstu = checkStudentParams(estudiante, estudian);
+                estudianteList.remove(estudiante);
+                estudianteList.add(newEstu);
+                break;
+            }
+        }
+        return "Estudiante actualizado";
+    }
+
+
     public int filtrarID() {
         int id = 100000;
         for (Estudiante estudiante : estudianteList) {
