@@ -99,9 +99,9 @@ public class Controller {
         Estudiante newEstu = null;
         for (Estudiante estudiante : estudianteList){
             if (estudiante.getId() == id){
+                int posicion = estudianteList.indexOf(estudiante);
                 newEstu = checkStudentParams(estudiante, estudian);
-                estudianteList.remove(estudiante);
-                estudianteList.add(newEstu);
+                estudianteList.set(posicion,newEstu);
                 break;
             }
         }
