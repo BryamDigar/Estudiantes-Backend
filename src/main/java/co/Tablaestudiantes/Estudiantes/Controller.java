@@ -49,6 +49,19 @@ public class Controller {
         return busqueda;
     }
 
+    @DeleteMapping(path = "/estudiantes/eliminar/{id}")
+    public String eliminarEstudiante(@PathVariable(name = "id") Integer id){
+        int index = 0;
+        for(Estudiante estu : estudianteList){
+            if(estu.getId() == id){
+                estudianteList.remove(index);
+                break;
+            }
+            index++;
+        }
+        return "Estudiante eliminado";
+    }
+
     public int filtrarID() {
         int id = 100000;
         for (Estudiante estudiante : estudianteList) {
