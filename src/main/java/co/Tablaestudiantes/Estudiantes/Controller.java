@@ -7,6 +7,8 @@ import java.util.List;
 
 @RestController
 public class Controller {
+    public String Status = "";
+
     List<Estudiante> estudianteList;
 
     public Controller() {
@@ -68,14 +70,26 @@ public class Controller {
         if(estudian.getFacultad() != null){
             estudiante.setFacultad(estudian.getFacultad());
         }
-        if(estudian.getSemestre() != 0 && estudian.getSemestre() <10){
+        else{
+            this.Status = this.Status + "facultad, ";
+        }
+        if(estudian.getSemestre() != 0){
             estudiante.setSemestre(estudian.getSemestre());
+        }
+        else{
+            this.Status = this.Status + "semestre, ";
         }
         if(String.valueOf(estudian.getNombre()).length() >= 3){
             estudiante.setNombre(estudian.getNombre());
         }
+        else{
+            this.Status = this.Status + "nombre, ";
+        }
         if(estudian.getId() != 0){
             estudiante.setId(estudian.getId());
+        }
+        else{
+            this.Status = this.Status + "id, ";
         }
         return estudiante;
     }
@@ -91,7 +105,7 @@ public class Controller {
                 break;
             }
         }
-        return "Estudiante actualizado";
+        return "Estudiante actualizado, variables no actualizadas: "+this.Status+"; si actualizó alguna de estas, revise sus datos y intente otra vez.";
     }
 
 
