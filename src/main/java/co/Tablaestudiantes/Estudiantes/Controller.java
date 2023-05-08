@@ -21,7 +21,7 @@ public class Controller {
     }
 
     @PostMapping(path = "/estudiante/crear")
-    public String crearEstudiante(@RequestBody Estudiante estudiante) {
+    public Respuesta crearEstudiante(@RequestBody Estudiante estudiante) {
         String estado = "";
         if ((String.valueOf(estudiante.getSemestre()).length() >= 1) && (String.valueOf(estudiante.getFacultad()).length() >= 1) && (String.valueOf(estudiante.getNombre()).length() >= 3)) {
             estudiante.setId(filtrarID());
@@ -30,7 +30,7 @@ public class Controller {
         } else {
             estado = "Fallo en los datos";
         }
-        return estado;
+        return new Respuesta(estado);
     }
 
     @GetMapping(path = "/estudiantes/todos")
