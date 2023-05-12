@@ -8,6 +8,7 @@ public class Estudiante {
     private int id;
     private int semestre;
     private String facultad;
+    private String programa;
 
     //Getters y Setters
 
@@ -43,13 +44,21 @@ public class Estudiante {
         this.facultad = facultad;
     }
 
+    public String getPrograma() {
+        return programa;
+    }
+
+    public void setPrograma(String programa) {
+        this.programa = programa;
+    }
     //Constructors
 
-    public Estudiante(String nombre, int id, int semestre, String facultad) {
+    public Estudiante(String nombre, int id, int semestre, String facultad, String programa) {
         this.nombre = nombre;
         this.id = id;
         this.semestre = semestre;
         this.facultad = facultad;
+        this.programa = programa;
     }
 
     public Estudiante() {
