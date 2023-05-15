@@ -39,13 +39,11 @@ public class Controller {
     }
 
     @GetMapping(path = "/estudiantes")
-    public List<Estudiante> obtenerEstudiantePorFacultad(@RequestParam String facultad, int numMostrar){
-        int contador = 1;
+    public List<Estudiante> obtenerEstudiantePorFacultad(@RequestParam String facultad){
         List<Estudiante> busqueda = new ArrayList<>();
         for(Estudiante estudiante : estudianteList){
-            if((estudiante.getFacultad().equals(facultad)) && (contador <= numMostrar)){
+            if(estudiante.getFacultad().equals(facultad)){
                 busqueda.add(estudiante);
-                contador +=1;
             }
         }
         return busqueda;
